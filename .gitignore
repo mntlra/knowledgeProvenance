@@ -10,7 +10,7 @@ __pycache__/
 .idea/*
 
 # Protegé
-*/catalog-v001.xml
+*catalog-v001.xml
 
 # macOS 
 .DS_Store
