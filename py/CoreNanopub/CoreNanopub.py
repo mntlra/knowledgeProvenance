@@ -7,10 +7,11 @@ from .utils import _extractGCSID
 
 class CoreNanopub(CommonNanopub):
 
-    def __init__(self, sample=True):
+    def __init__(self, path_to_properties='../properties/common.ini', sample=True):
         """
         Initialisation function.
 
+        :param path_to_properties : (str) path to properties file.
         :param sample: (bool) whether to serialize a sample GCS facts or all GCS facts.
         """
         super().__init__()
