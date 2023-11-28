@@ -21,9 +21,7 @@ py/.idea/*
 */.DS_Store
 
 # data files
-data/logs/
-data/raw/
-data/serialization/
+data/
 
 # Distribution / packaging
 .Python
