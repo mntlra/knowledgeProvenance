@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # IDE
-.idea/*
+py/.idea/*
 
 # Protegé
 *catalog-v001.xml
