@@ -3,7 +3,7 @@ import configparser
 from rdflib import Namespace, ConjunctiveGraph, Graph
 from rdflib.namespace import DC, DCTERMS, FOAF, XSD, RDFS, RDF
 
-from nanopub.nanopub.namespaces import NP
+from extended_nanopub.namespaces import NP
 
 
 class CommonNanopub:
@@ -96,13 +96,13 @@ class CommonNanopub:
 
     def initializeNanopubGraphs(self):
         """
-        Initialize all components of the nanopub.
+        Initialize all components of the extended_nanopub.
         :param self: self object.
         """
         # Initialize Head Graph
         self.head_graph = self.initializeGraph(f"head")
 
-        # Link nanopub's components to the head graph
+        # Link extended_nanopub's components to the head graph
         self.head_graph.add((
             self.nanopub_graph.identifier,
             RDF.type,

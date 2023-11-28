@@ -55,7 +55,7 @@ class CoreNanopub(CommonNanopub):
         Create a dictionary with ('namespace_id', URL) of each namespace defined in the property files.
         """
         self.namespaces = {nid: Namespace(uri) for nid, uri in self.config['NAMESPACES'].items()}
-        # Add the considered nanopub's namespaces
+        # Add the considered extended_nanopub's namespaces
         self.namespaces["this"] = Namespace(self.namespaces["corenp"] + gcs_id)
         self.namespaces["sub"] = Namespace(self.namespaces["corenp"] + gcs_id + "#")
 
@@ -77,7 +77,7 @@ class CoreNanopub(CommonNanopub):
 
     def create_nanopub_graphs(self):
         """
-        Iterate over the facts and create a nanopub for each of them.
+        Iterate over the facts and create a extended_nanopub for each of them.
         :return: self object.
         """
         self.logger.info(f"--- Reading and Processing Data ---")

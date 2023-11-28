@@ -1,5 +1,5 @@
 from CoreNanopub.utils import _extractSentenceID, _extractGCSID
-from nanopub.nanopub import ExtendedNanopub
+from extended_nanopub import ExtendedNanopub
 from rdflib import URIRef, Literal
 from rdflib.namespace import DCTERMS, XSD, RDFS, RDF
 from datetime import datetime
@@ -38,7 +38,7 @@ def _createNanopub(self, gcs_row):
 
 def _populateAssertionGraph(self, gcs_row):
     """
-    Populates the assertion graph for the nanopub of the considered GCS.
+    Populates the assertion graph for the extended_nanopub of the considered GCS.
 
     :param self: self object.
     :param gcs_row: (pandas.Series) row with GCS information.
@@ -58,7 +58,7 @@ def _populateAssertionGraph(self, gcs_row):
 
 def _populatePubInfoGraph(self, gcs_row):
     """
-    Populates the publication info graph for the nanopub of the considered GCS.
+    Populates the publication info graph for the extended_nanopub of the considered GCS.
 
     :param self: self object.
     :param gcs_row: (pandas.Series) row with GCS information.
@@ -97,7 +97,7 @@ def _populatePubInfoGraph(self, gcs_row):
 
 def _populateProvenanceGraph(self):
     """
-    Populates the provenance graph for the nanopub of the considered GCS.
+    Populates the provenance graph for the extended_nanopub of the considered GCS.
 
     :param self: self object.
     """
@@ -122,7 +122,7 @@ def _populateProvenanceGraph(self):
 
 def _populateKnowledgeProvGraph(self, gcs_row):
     """
-    Populates the knowledge provenance graph for the nanopub of the considered GCS.
+    Populates the knowledge provenance graph for the extended_nanopub of the considered GCS.
 
     :param self: self object.
     :param gcs_row: (pandas.Series) row with GCS information.
