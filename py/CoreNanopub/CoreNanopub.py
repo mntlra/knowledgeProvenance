@@ -86,6 +86,8 @@ class CoreNanopub(CommonNanopub):
         self.process_data()
         self.logger.info(f"--- Reading and Processing COMPLETED ---")
         self.logger.info(f"+++ Start Nanopublications Serialization +++")
+        self.current_serialized = 1
+        self.to_be_serialized = len(self.gcs.index)
         self.gcs.apply(self._createNanopub, axis=1)
         return self
 

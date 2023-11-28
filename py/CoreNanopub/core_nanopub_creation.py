@@ -18,7 +18,8 @@ def _createNanopub(self, gcs_row):
     :param gcs_row: (pandas.Series) row comprise the fact's information.
     :return:
     """
-    self.logger.info(f"+++ Creating nanopublication {gcs_row.name}")
+    self.logger.info(f"+++ Creating nanopublication {gcs_row.name} ({self.current_serialized}/{self.to_be_serialized})")
+    self.current_serialized += 1
     self.initializeFullGraph(gcs_row.name)
 
     self.initializeNanopubGraphs()
