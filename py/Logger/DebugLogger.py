@@ -20,7 +20,6 @@ class StreamToLogger(object):
     def flush(self):
         pass
 
-
 @singleton
 class DebugLogger:
 
@@ -56,3 +55,4 @@ class DebugLogger:
         sys.stderr = StreamToLogger(self.logger, logging.ERROR)
 
         return self
+
