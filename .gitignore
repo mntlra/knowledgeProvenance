@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Legacy code
+*/legacy/*
+
 # IDE
 .idea/*
 py/.idea/*
