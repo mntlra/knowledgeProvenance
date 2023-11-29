@@ -1,0 +1,1249 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://gda.dei.unipd.it/cecore/ontology/"
+     xml:base="http://gda.dei.unipd.it/cecore/ontology/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:prov="http://www.w3.org/ns/prov#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/">
+    <owl:Ontology rdf:about="http://gda.dei.unipd.it/cecore/ontology/">
+        <owl:imports rdf:resource="https://w3id.org/PROV-K/ontology/schema/1.0/"/>
+        <dc:title xml:lang="en">CORE Ontology for Nanopub Serialization</dc:title>
+        <terms:creator rdf:resource="https://orcid.org/0000-0002-0676-682X"/>
+        <terms:creator rdf:resource="https://orcid.org/0000-0003-0362-5893"/>
+        <terms:creator rdf:resource="https://orcid.org/0000-0003-4970-4554"/>
+        <terms:description xml:lang="en">This is the ontology supporting the KB creation process for Gene Disease Associations extracted from the literature and the serialization of the extracted GCS as nanopubs.</terms:description>
+        <terms:license rdf:resource="https://creativecommons.org/licenses/by-sa/4.0/"/>
+        <rdfs:comment xml:lang="en">This is the ontology supporting the KB creation process for Gene Disease Associations extracted from the literature and the serialization of the extracted GCS as nanopubs.
+
+The focus is on cancer diseases.</rdfs:comment>
+        <owl:versionInfo xml:lang="en">1.0</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/contains -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/contains">
+        <owl:inverseOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/extractedFrom"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/NCIT_C47902"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://gda.dei.unipd.it/cecore/ontology/contains"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;contains&apos; expresses the association between the Article and its Sentence.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/diseaseMentionedBy -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/diseaseMentionedBy">
+        <owl:inverseOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/mentionsDisease"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="https://www.ebi.ac.uk/ols/ontologies/doid/Disease"/>
+        <rdfs:range rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;diseaseMentionedBy&apos; expresses the association between the mentioned Disease and the Sentence.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/expressedBy -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/expressedBy">
+        <owl:inverseOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/expresses"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://purl.obolibrary.org/obo/SO_0000704"/>
+        <dc:creator>Stfano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;expressedBy&apos; relates a GCS to a Gene. A GCS has a unique related Gene.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/expresses -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/expresses">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/SO_0000704"/>
+        <rdfs:range rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <dc:creator>Stfano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;expresses&apos; relates a Gene to a GCS. A Gene can have zero, one, or many GCS associated with it.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/extractedFrom -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/extractedFrom">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://purl.obolibrary.org/obo/NCIT_C47902"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;extractedFrom&apos; expresses the association between the Sentence and the Article it has been extracted from.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/geneMentionedBy -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/geneMentionedBy">
+        <owl:inverseOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/mentionsGene"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/SO_0000704"/>
+        <rdfs:range rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;geneMentionedBy&apos; expresses the association between the mentioned Gene and the Sentence.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/includedIn -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/includedIn">
+        <owl:inverseOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/includes"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://purl.obolibrary.org/obo/NCIT_C15426"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;includedIn&apos; expresses the association between the Sentence and the Database storing it (if any).</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/includes -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/includes">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/NCIT_C15426"/>
+        <rdfs:range rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;includes&apos; expresses the association between the Database and the Sentence stored in it.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/involvedIn -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/involvedIn">
+        <owl:inverseOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/involves"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="https://www.ebi.ac.uk/ols/ontologies/doid/Disease"/>
+        <rdfs:range rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;involvedIn&apos; relates a Disease to a GCS. A Disease can have zero, one, or many GCS associated with it.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/involves -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/involves">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="https://www.ebi.ac.uk/ols/ontologies/doid/Disease"/>
+        <dc:creator>Stfano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;involves&apos; relates a GCS to a Disease. A GCS has a unique related Disease.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/mentionsDisease -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/mentionsDisease">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="https://www.ebi.ac.uk/ols/ontologies/doid/Disease"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;mentionsDisease&apos; expresses the association between the Sentence and the mentioned Disease.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/mentionsGene -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/mentionsGene">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://purl.obolibrary.org/obo/SO_0000704"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;mentionsGene&apos; expresses the association between the Sentence and the mentioned Gene.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/supportedBy -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/supportedBy">
+        <owl:inverseOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/supports"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://gda.dei.unipd.it/cecore/ontology/supportedBy"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;supportedBy&apos; expresses the association between GCS and the supporting Sentence. Each GCS is supported by at least one Sentence.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/supports -->
+
+    <owl:ObjectProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/supports">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;supports&apos; expresses the association between the Sentence and the supported GCS. Each Sentence supports only one GCS.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/AGT -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/AGT">
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;AGT&apos; expresses the Active Gene Type that the gene has with regard to the specific disease. AGT can be Oncogene or Tumor Suppressor Gene. An oncogene is a gene that strenghtens the cancerous properties of a cell or tissue, whereas a tumor suppressor gene is a gene that weakens the cancerous properties of a cell or tissue.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/AGTOncogeneLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/AGTOncogeneLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/AGT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oncogene type likelihood. It is a float that specifies the likelihood for the gene of being an oncogene for the considered disease.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/AGTOncogeneSupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/AGTOncogeneSupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/AGT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oncogene support. It is an integer that specifies the number of evidences supporting the oncogene type of the gene with regard to the specified disease.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/AGTTSGLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/AGTTSGLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/AGT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TSG type likelihood. It is a float that specifies the likelihood for the gene of being a tumor suppressor gene for the considered disease.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/AGTTSGSupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/AGTTSGSupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/AGT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TSG support. It is an integer that specifies the number of evidences supporting the TSG type of the gene with regard to the specified disease.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CCS -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CCS">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+                    <rdf:Description rdf:about="http://semanticscience.org/resource/SIO_000113"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;CCS&apos; expresses the Change in the Cancer Status associated with a specific Gene. CCS can be either Progression, Regression, or Unknown.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CCSLabel -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CCSLabel">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CCS"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>NOTINF</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>PROGRESSION</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>REGRESSION</rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;CCSLabel&apos; expresses the Label associated with CCS in the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CCSNotInformativeLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CCSNotInformativeLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CCS"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cancer Not Informative Status likelihood. It is a float specifying the likelihood of having not informative cancer status in relation to Gene expression.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CCSNotInformativeSupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CCSNotInformativeSupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CCS"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Cancer Not Informative Status support. It is an integer specifying the number of evidences supporting Cancer not informative status in relation with Gene expression.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CCSProgressionLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CCSProgressionLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CCS"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Cancer Progression likelihood. It is a float specifying the likelihood of having Cancer progression.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CCSProgressionSupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CCSProgressionSupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CCS"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Cancer Progression support. It is an integer specifying the number of evidences supporting Cancer progression.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CCSRegressionLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CCSRegressionLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CCS"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Cancer Regression likelihood. It is a float specifying the likelihood of having Cancer regression.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CCSRegressionSupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CCSRegressionSupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CCS"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Cancer Regression support. It is an integer specifying the number of evidences supporting Cancer regression.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CCSScore -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CCSScore">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CCS"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;CCSScore&apos; expresses the Score associated with CCS candidate label for the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CE -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CE">
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;CE&apos; represents the Cancer-gene Expression Association expressed by a Sentence. CE can be either Expression or Other. Sentences labeled as Other are not ingested by CECORE (for now).</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CELabel -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CELabel">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CE"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>EXPRESSION</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>OTHER</rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;CELabel&apos; expresses the Label associated with CE in the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CEScore -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CEScore">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CE"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;CEScore&apos; expresses the Score associated with CE candidate label for the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CGE -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CGE">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+                    <rdf:Description rdf:about="http://semanticscience.org/resource/SIO_000113"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;CGE&apos; expresses the Change in the Gene Expression associated with a specific disease. CGE can be either up regulation or down regulation.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CGEDownLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CGEDownLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CGE"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Down regulated Gene Expression likelihood. It is a float specifying the likelihood of having Gene down regulation.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CGEDownSupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CGEDownSupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CGE"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Down regulated Gene Expression support. It is an integer specifying the number of evidences supporting Gene down regulation.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CGELabel -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CGELabel">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CGE"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>DOWN</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>UP</rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;CGELabel&apos; expresses the Label associated with CGE in the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CGEScore -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CGEScore">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CGE"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;CGEScore&apos; expresses the Score associated with CGE candidate label for the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CGEUpLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CGEUpLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CGE"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Up regulated Gene Expression likelihood. It is a float specifying the likelihood of having Gene up regulation.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/CGEUpSupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/CGEUpSupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/CGE"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator xml:lang="en">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Up regulated Gene Expression support. It is an integer specifying the number of evidences supporting Gene up regulation.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/DSA -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/DSA">
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;DSA&apos; expresses the Disease information associated with the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/DSAEndPosition -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/DSAEndPosition">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/DSA"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:comment>&apos;DSAEndPosition&apos; expresses the character right after the Disease mention in the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/DSAMention -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/DSAMention">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/DSA"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;DSAMention&apos; expresses the Disease Mention in the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/DSAStartPosition -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/DSAStartPosition">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/DSA"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;DSAStartPosition&apos; expresses the starting character associated with the Disease mention in the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/EGR -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/EGR">
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;EGR&apos; expresses the Expected Gene Role that the gene has with regard to the specific disease. EGR can be Passive or Active. An Active role means that the Gene Expression actively participates in the disease progression/regression, whereas a Passive role implies that the Gene Expression has been observed to change along with the disease progression/regression -- but no cause-effect relationship occurs.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/EGRActiveLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/EGRActiveLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/EGR"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Active role likelihood. It is a float that specifies the likelihood for the gene of having an active role in the considered disease progression/regression .</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/EGRActiveSupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/EGRActiveSupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/EGR"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Active role support. It is an integer that specifies the number of evidences supporting the active role of the gene in the progression/regression of the specified disease.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/EGRPassiveLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/EGRPassiveLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/EGR"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Passive role likelihood. It is a float that specifies the likelihood for the gene of having a passive role in the considered disease progression/regression .</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/EGRPassiveSupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/EGRPassiveSupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/EGR"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Passive role support. It is an integer that specifies the number of evidences supporting the passive role of the gene in the progression/regression of the specified disease.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/GSA -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/GSA">
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;GSA&apos; expresses the Gene information associated with the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/GSAEndPosition -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/GSAEndPosition">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GSA"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;GSAEndPosition&apos; expresses the character right after the Gene mention in the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/GSAMention -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/GSAMention">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GSA"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;GSAMention&apos; expresses the Gene Mention in the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/GSAStartPosition -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/GSAStartPosition">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GSA"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator>&apos;GSAStartPosition&apos; expresses the starting character associated with the Gene mention in the Sentence.</dc:creator>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/PT -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/PT">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+                    <rdf:Description rdf:about="http://semanticscience.org/resource/SIO_000113"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:comment>&apos;PT&apos; expresses the proposition type that associates a Change in the Gene Expression with a specific disease. PT can be Observation, Causality, or Unknown.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/PTCausalityLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/PTCausalityLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/PT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Causality Association likelihood. It is a float specifying the likelihood of having Causality association type between Gene Expression and Cancer Status.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/PTCausalitySupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/PTCausalitySupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/PT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Causality Association support. It is an integer specifying the number of evidences supporting the Causality type association between Gene Expression and Cancer Status.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/PTLabel -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/PTLabel">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/PT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>CAUSALITY</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>NOTINF</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>OBSERVATION</rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;PTLabel&apos; expresses the Label associated with PT in the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/PTNotInformativeLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/PTNotInformativeLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/PT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Not Informative Association likelihood. It is a float specifying the likelihood of having not informative association type between Gene Expression and Cancer Status.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/PTNotInformativeSupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/PTNotInformativeSupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/PT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Not Informative Association support. It is an integer specifying the number of evidences supporting the not informative type association between Gene Expression and Cancer Status.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/PTObservationLikelihood -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/PTObservationLikelihood">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/PT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Observation Association likelihood. It is a float specifying the likelihood of having Observation type association between Gene Expression and Cancer Status.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/PTObservationSupport -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/PTObservationSupport">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/PT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Observation Association support. It is an integer specifying the number of evidences supporting the Observation type association between Gene Expression and Cancer Status.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/PTScore -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/PTScore">
+        <rdfs:subPropertyOf rdf:resource="http://gda.dei.unipd.it/cecore/ontology/PT"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;PTScore&apos; expresses the Score associated with PT candidate label for the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/abstract -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/abstract">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/NCIT_C47902"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;abstract&apos; expresses the abstract associated with the Article.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/cites -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/cites">
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/NCIT_C47902"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;cites&apos; expresses the citations made by the Article.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/curatedAnnotation -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/curatedAnnotation">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;curatedAnnotation&apos; expresses information about the manual curation of the Sentence. The values can be True or False.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/hasCitation -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/hasCitation">
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/NCIT_C47902"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;hasCitation&apos; expresses the articles citing the corresponding Article.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/hasContent -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/hasContent">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;hasContent&apos; expresses the textual content associated with the Sentence.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/hasType -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/hasType">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>BIOMARKER</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>ONCOGENE</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>TSG</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first>UNCERTAIN</rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;hasType&apos; expresses the GCS type based on supporting sentences. The considered types are: &apos;BIOMARKER&apos;, &apos;ONCOGENE&apos;, &apos;TSG&apos;, and &apos;UNCERTAIN&apos;.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/hasVenue -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/hasVenue">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/NCIT_C47902"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;hasVenue&apos; expresses the Venue associated with the Article.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/isInformative -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/isInformative">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gda.dei.unipd.it/cecore/ontology/GCS"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;isInformative&apos; expresses the GCS informativeness based on supporting sentences.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/publicationYear -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/publicationYear">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/NCIT_C47902"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>&apos;publicationYear&apos; expresses the Year of publication associated with the Article.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/title -->
+
+    <owl:DatatypeProperty rdf:about="http://gda.dei.unipd.it/cecore/ontology/title">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/NCIT_C47902"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;title&apos; expresses the title associated with the Article.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/GCS -->
+
+    <owl:Class rdf:about="http://gda.dei.unipd.it/cecore/ontology/GCS">
+        <dc:creator>Stefano Marchesin, Gianmaria Silvello</dc:creator>
+        <rdfs:comment>Gene Cancer Status (GCS). GCS relates a Gene Expression to a Cancer Status by specifying: Change in Gene Expression, Change in Cancer Status, and Property Type.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ECO_0000212 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ECO_0000212">
+        <rdfs:comment xml:lang="en">A type of evidence in which at least two distinct types of evidence have been integrated. [database_cross_reference: ECO:MCC][database_cross_reference: ECO:RCT]</rdfs:comment>
+        <rdfs:label xml:lang="en">Combinatorial Evidence</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCIT_C15426 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCIT_C15426">
+        <rdfs:comment>An information set with a regular structure. Although it can be applied to any set of information the term was invented to refer to computerized data, and is used almost exclusively in computing.</rdfs:comment>
+        <rdfs:label>Database</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCIT_C47902 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCIT_C47902">
+        <rdfs:comment>Nonfictional prose forming an independent part of a publication.</rdfs:comment>
+        <rdfs:isDefinedBy>NCIT</rdfs:isDefinedBy>
+        <rdfs:label>Article</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCIT_C62638 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCIT_C62638">
+        <owl:equivalentClass rdf:resource="http://semanticscience.org/resource/SIO_000113"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/SO_0000704 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/SO_0000704">
+        <rdfs:comment>A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene may include regulatory regions, transcribed regions and/or other functional sequence regions. [database_cross_reference: SO:immuno_workshop]</rdfs:comment>
+        <rdfs:label>Gene</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://semanticscience.org/resource/SIO_000113 -->
+
+    <owl:Class rdf:about="http://semanticscience.org/resource/SIO_000113">
+        <rdfs:comment>A sentence is a grammatical unit consisting of one or more words that bear minimal syntactic relation to the words that precede or follow it.</rdfs:comment>
+        <rdfs:label>Sentence</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/knowledgePROV/ontology/schema/ConsistencyCriteria -->
+
+    <owl:Class rdf:about="https://w3id.org/knowledgePROV/ontology/schema/ConsistencyCriteria"/>
+    
+
+
+    <!-- https://w3id.org/knowledgePROV/ontology/schema/SufficiencyCriteria -->
+
+    <owl:Class rdf:about="https://w3id.org/knowledgePROV/ontology/schema/SufficiencyCriteria"/>
+    
+
+
+    <!-- https://www.ebi.ac.uk/ols/ontologies/doid/Disease -->
+
+    <owl:Class rdf:about="https://www.ebi.ac.uk/ols/ontologies/doid/Disease"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/onto/CORE -->
+
+    <owl:NamedIndividual rdf:about="http://gda.dei.unipd.it/cecore/onto/CORE">
+        <rdf:type rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+        <rdfs:comment xml:lang="en">The Collaborative Oriented Relation Extraction (CORE) system is a Knowledge Base Construction (KBC) system based on the combination of distant supervision and active learning paradigms. The resulting Knowledge Base (KB) comprises &quot;fine-grained&quot; gene expression-cancer associations.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://doi.org/10.1093/database/baad061"/>
+        <rdfs:label xml:lang="en">Collaborative Oriented Relation Extraction</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/ccsCriteria -->
+
+    <owl:NamedIndividual rdf:about="http://gda.dei.unipd.it/cecore/ontology/ccsCriteria">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <rdf:type rdf:resource="https://w3id.org/knowledgePROV/ontology/schema/SufficiencyCriteria"/>
+        <rdfs:comment xml:lang="en">Given a fact (v1,e,v2), a sufficiency check monitors whether the likelihood of not-informative aspect values is large enough to undermine the reliability of the fact. A fact fails the sufficiency check and therefore is deemed &quot;unreliable due to insufficient evidence&quot; if Pr(CCS=notinf)&gt;alpha, where alpha is the conditionThreshold.</rdfs:comment>
+        <rdfs:label xml:lang="en">CCS Criteria</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/gciCriteria -->
+
+    <owl:NamedIndividual rdf:about="http://gda.dei.unipd.it/cecore/ontology/gciCriteria">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <rdf:type rdf:resource="https://w3id.org/knowledgePROV/ontology/schema/SufficiencyCriteria"/>
+        <rdfs:comment xml:lang="en">Given a fact (v1,e,v2), a sufficiency check monitors whether the likelihood of nt-informative aspect values is large enough to undermine the reliability of the fact. A fact fails the sufficiency check and therefore is deemed &quot;unreliable due to insufficient evidence&quot; if Pr(GCI=notinf)&gt;alpha, where alpha is the conditionThreshold.</rdfs:comment>
+        <rdfs:label xml:lang="en">GCI Criteria</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/gcsEvidence -->
+
+    <owl:NamedIndividual rdf:about="http://gda.dei.unipd.it/cecore/ontology/gcsEvidence">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000212"/>
+        <rdfs:comment xml:lang="en">Gene expression-cancer association harvested from collecting the scientific literature from different sources.</rdfs:comment>
+        <rdfs:label xml:lang="en">CORE Gene Cancer Status (GCS)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gda.dei.unipd.it/cecore/ontology/geneClassCriteria -->
+
+    <owl:NamedIndividual rdf:about="http://gda.dei.unipd.it/cecore/ontology/geneClassCriteria">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <rdf:type rdf:resource="https://w3id.org/knowledgePROV/ontology/schema/ConsistencyCriteria"/>
+        <rdfs:comment xml:lang="en">For a target fact (v1,e,v2), CORE takes gene classes type-1 and type-2 with larget likelihoods and verifies that the condition (Pr(type-1)-Pr(type-2)) &gt; beta, where beta is the conditionThreshold, is satisfied. A fact that fails the condition is therefore considered &quot;unreliable due to contrasting evidence&quot;.</rdfs:comment>
+        <rdfs:label xml:lang="en">Gene Class Criteria</rdfs:label>
+    </owl:NamedIndividual>
+    <rdf:Description>
+        <rdfs:comment xml:lang="en">&apos;supports&apos; expresses the association between the Sentence and the supported GCS. Each Sentence supports only one GCS.</rdfs:comment>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
