@@ -107,16 +107,16 @@ def _populateProvenanceGraph(self):
                               self.namespaces["ECO"]["0000203"]))
     # Add Entity
     self.provenance_graph.add((self.assertion_graph.identifier, self.namespaces["prov"]["wasDerivedFrom"],
-                              self.namespaces["ceresource"]["CORE"]))
+                              URIRef("https://gda.dei.unipd.it/")))
     # Link Evidence to the assertion
     self.provenance_graph.add((self.assertion_graph.identifier, self.namespaces["wi"]["evidence"],
-                               self.namespaces["ceresource"]["gcsEvidence"]))
+                               self.namespaces["ceonto"]["gcsEvidence"]))
     # Instantiate Evidence
-    self.provenance_graph.add((self.namespaces["ceresource"]["gcsEvidence"], RDF.type,
+    self.provenance_graph.add((self.namespaces["ceonto"]["gcsEvidence"], RDF.type,
                               self.namespaces["ECO"]["0000212"]))
-    self.provenance_graph.add((self.namespaces["ceresource"]["gcsEvidence"], RDFS.label,
+    self.provenance_graph.add((self.namespaces["ceonto"]["gcsEvidence"], RDFS.label,
                               Literal("CORE Gene Cancer Status (GCS)", lang="en")))
-    self.provenance_graph.add((self.namespaces["ceresource"]["gcsEvidence"], RDFS.comment,
+    self.provenance_graph.add((self.namespaces["ceonto"]["gcsEvidence"], RDFS.comment,
                               Literal("Gene expression-cancer association harvested from collecting the scientific"
                                       " literature from different sources.", lang="en")))
 
