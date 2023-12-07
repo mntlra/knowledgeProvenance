@@ -12,7 +12,7 @@
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:terms="http://purl.org/dc/terms/">
     <owl:Ontology rdf:about="http://gda.dei.unipd.it/cecore/ontology/">
-        <owl:imports rdf:resource="https://w3id.org/PROV-K/ontology/schema/1.0/"/>
+        <owl:imports rdf:resource="https://w3id.org/PROV-K/ontology/1.0/schema"/>
         <dc:title xml:lang="en">CORE Ontology for Nanopub Serialization</dc:title>
         <terms:creator rdf:resource="https://orcid.org/0000-0002-0676-682X"/>
         <terms:creator rdf:resource="https://orcid.org/0000-0003-0362-5893"/>
@@ -1158,18 +1158,6 @@ The focus is on cancer diseases.</rdfs:comment>
     
 
 
-    <!-- https://w3id.org/knowledgePROV/ontology/schema/ConsistencyCriteria -->
-
-    <owl:Class rdf:about="https://w3id.org/knowledgePROV/ontology/schema/ConsistencyCriteria"/>
-    
-
-
-    <!-- https://w3id.org/knowledgePROV/ontology/schema/SufficiencyCriteria -->
-
-    <owl:Class rdf:about="https://w3id.org/knowledgePROV/ontology/schema/SufficiencyCriteria"/>
-    
-
-
     <!-- https://www.ebi.ac.uk/ols/ontologies/doid/Disease -->
 
     <owl:Class rdf:about="https://www.ebi.ac.uk/ols/ontologies/doid/Disease"/>
@@ -1202,7 +1190,7 @@ The focus is on cancer diseases.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://gda.dei.unipd.it/cecore/ontology/ccsCriteria">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-        <rdf:type rdf:resource="https://w3id.org/knowledgePROV/ontology/schema/SufficiencyCriteria"/>
+        <rdf:type rdf:resource="https://w3id.org/PROV-K/ontology/schema/SufficiencyCriteria"/>
         <rdfs:comment xml:lang="en">Given a fact (v1,e,v2), a sufficiency check monitors whether the likelihood of not-informative aspect values is large enough to undermine the reliability of the fact. A fact fails the sufficiency check and therefore is deemed &quot;unreliable due to insufficient evidence&quot; if Pr(CCS=notinf)&gt;alpha, where alpha is the conditionThreshold.</rdfs:comment>
         <rdfs:label xml:lang="en">CCS Criteria</rdfs:label>
     </owl:NamedIndividual>
@@ -1213,7 +1201,7 @@ The focus is on cancer diseases.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://gda.dei.unipd.it/cecore/ontology/gciCriteria">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-        <rdf:type rdf:resource="https://w3id.org/knowledgePROV/ontology/schema/SufficiencyCriteria"/>
+        <rdf:type rdf:resource="https://w3id.org/PROV-K/ontology/schema/SufficiencyCriteria"/>
         <rdfs:comment xml:lang="en">Given a fact (v1,e,v2), a sufficiency check monitors whether the likelihood of nt-informative aspect values is large enough to undermine the reliability of the fact. A fact fails the sufficiency check and therefore is deemed &quot;unreliable due to insufficient evidence&quot; if Pr(GCI=notinf)&gt;alpha, where alpha is the conditionThreshold.</rdfs:comment>
         <rdfs:label xml:lang="en">GCI Criteria</rdfs:label>
     </owl:NamedIndividual>
@@ -1234,7 +1222,7 @@ The focus is on cancer diseases.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://gda.dei.unipd.it/cecore/ontology/geneClassCriteria">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-        <rdf:type rdf:resource="https://w3id.org/knowledgePROV/ontology/schema/ConsistencyCriteria"/>
+        <rdf:type rdf:resource="https://w3id.org/PROV-K/ontology/schema/ConsistencyCriteria"/>
         <rdfs:comment xml:lang="en">For a target fact (v1,e,v2), CORE takes gene classes type-1 and type-2 with larget likelihoods and verifies that the condition (Pr(type-1)-Pr(type-2)) &gt; beta, where beta is the conditionThreshold, is satisfied. A fact that fails the condition is therefore considered &quot;unreliable due to contrasting evidence&quot;.</rdfs:comment>
         <rdfs:label xml:lang="en">Gene Class Criteria</rdfs:label>
     </owl:NamedIndividual>
