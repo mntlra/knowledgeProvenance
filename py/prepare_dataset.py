@@ -21,14 +21,16 @@ config = configparser.ConfigParser()
 config.optionxform = str
 config.read(properties_file)
 
+datadir = config["PATHS"]["datadir"]
+
 # Load dump graph into memory
 dump = rdflib.Graph()
-dump.parse(config["PATHS.DATASET"]["ttl"], format="ttl")
+dump.parse(datadir+config["PATHS.DATASET"]["ttl"], format="ttl")
 
 Logger.logger.info(f"+++ Extracting GCS facts from dump +++")
 gcs = extract_facts(dump, Logger.logger)
 Logger.logger.info(f"+++ Saving GCS facts in a CSV file +++")
-gcs.to_csv(config["PATHS.OUTPUT"]["gcs"], index=False)
+gcs.to_csv(datadir+config["PATHS.OUTPUT"]["gcs"], index=False)
 
 # delete GCS dataframe to reduce memory consumption
 del gcs
@@ -37,6 +39,6 @@ gc.collect()
 Logger.logger.info(f"+++ Extracting sentences supporting GCS facts from dump +++")
 gcs_sentence = extract_gcs_sentence(dump, Logger.logger)
 Logger.logger.info(f"+++ Saving sentences supporting GCS facts in a CSV file +++")
-gcs_sentence.to_csv(config["PATHS.OUTPUT"]["gcs_sentence"], index=False)
+gcs_sentence.to_csv(datadir+config["PATHS.OUTPUT"]["gcs_sentence"], index=False)
 
 Logger.logger.info(f'-----\nDataset preparation completed at {datetime.now()}\n-----')
