@@ -2,28 +2,34 @@ import pandas as pd
 from CommonNanopub.CommonNanopub import CommonNanopub
 from rdflib import Namespace, ConjunctiveGraph
 
-from .utils import _extractGCSID
+from .utils import _extractGCSID, process_gcs
 
 
 class CoreNanopub(CommonNanopub):
 
-    def __init__(self, path_to_properties='../properties/common.ini', sample=True):
+    def __init__(self):
         """
         Initialisation function.
-
-        :param path_to_properties : (str) path to properties file.
-        :param sample: (bool) whether to serialize a sample GCS facts or all GCS facts.
         """
         super().__init__()
-        self.gcs_path = self.config["PATHS.DATASET.SAMPLE"]["gcs"] if sample else self.config["PATHS.DATASET"]["gcs"]
-        self.gcs_sentence_path = self.config["PATHS.DATASET.SAMPLE"]["gcs_sentence"] if sample else \
-            self.config["PATHS.DATASET"]["gcs_sentence"]
 
+    def set_paths(self, sample):
+        """
+        Set input files and serialization paths.
+
+        :param sample: (bool) whether to consider a sample or the full dump.
+        """
         self.serialization_formats = self.config["SERIALIZATION"]["formats"].split(",")
         serialization_prop = "PATHS.SERIALIZATION.SAMPLE" if sample else "PATHS.SERIALIZATION"
         self.serialization_path = {}
         for ser_format in self.serialization_formats:
             self.serialization_path[ser_format] = self.datadir + self.config[serialization_prop][ser_format]
+        if sample:
+            self.gcs_path = self.config["PATHS.DATASET.SAMPLE"]["gcs"]
+            self.gcs_sentence_path = self.config["PATHS.DATASET.SAMPLE"]["gcs_sentence"]
+        else:
+            self.gcs_path = self.config["PATHS.DATASET"]["gcs"]
+            self.gcs_sentence_path = self.config["PATHS.DATASET"]["gcs_sentence"]
 
     def read_data(self):
         """
@@ -37,13 +43,13 @@ class CoreNanopub(CommonNanopub):
         # self.gcs["id"] = self.gcs["id"].apply(lambda x: x.lstrip("http://gda.dei.unipd.it/cecore/resource/GCS#"))
         self.gcs["id"] = self.gcs["id"].apply(_extractGCSID)
         self.gcs.set_index("id", inplace=True)
-        self.gcs_sentence = pd.read_csv(self.datadir+self.gcs_sentence_path, index_col="id")
+        self.gcs_sentence = pd.read_csv(self.datadir+self.gcs_sentence_path, index_col=False)
 
     def process_data(self):
         """
         Remove invalid GCS facts.
         """
-        self.invalidGCS = self.process_gcs()
+        self.invalidGCS = process_gcs(self.gcs)
         # Drop invalid GCS
         original_len = len(self.gcs.index)
         self.gcs = self.gcs.loc[~self.gcs.index.isin(self.invalidGCS)]
@@ -76,12 +82,14 @@ class CoreNanopub(CommonNanopub):
 
         return self
 
-    def create_nanopub_graphs(self):
+    def create_nanopub_graphs(self, sample=False):
         """
         Iterate over the facts and create a extended_nanopub for each of them.
         :return: self object.
         """
         self.logger.info(f"--- Reading and Processing Data ---")
+
+        self.set_paths(sample)
         self.read_data()
         self.process_data()
         self.logger.info(f"--- Reading and Processing COMPLETED ---")
@@ -91,8 +99,8 @@ class CoreNanopub(CommonNanopub):
         self.gcs.apply(self._createNanopub, axis=1)
         return self
 
+
     from .core_nanopub_creation import _createNanopub, _populateAssertionGraph, \
         _populateProvenanceGraph, _populateKnowledgeProvGraph, _populatePubInfoGraph, _insertEvidence, \
         _insertConsistencyCondition, _insertSufficiencyCondition
 
-    from .utils import process_gcs

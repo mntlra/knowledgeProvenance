@@ -23,7 +23,7 @@ def _extractSentenceID(sentence_uri):
     return sentence_id
 
 
-def process_gcs(self):
+def process_gcs(gcs_df):
     """
     Filter out GCs with insufficient evidence
     :param self: self object.
@@ -31,7 +31,8 @@ def process_gcs(self):
     :return (list(str)) list of GCS id with insufficient evidence.
     """
 
-    invalid_gcs = self.gcs.loc[(self.gcs["CCSNotInformativeLikelihood"] > 0.7) |
-                               (self.gcs["PTNotInformativeLikelihood"] > 0.7)]
+    invalid_gcs = gcs_df.loc[(gcs_df["CCSNotInformativeLikelihood"] > 0.7) |
+                             (gcs_df["PTNotInformativeLikelihood"] > 0.7)]
 
     return invalid_gcs.index.to_list()
+

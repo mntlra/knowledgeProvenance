@@ -23,11 +23,11 @@ class StreamToLogger(object):
 @singleton
 class DebugLogger:
 
-    def __init__(self, name=None):
+    def __init__(self, name=None, path_to_properties='../properties/common.ini'):
 
         config = configparser.SafeConfigParser()
         config.optionxform = str
-        config.read('../properties/common.ini')
+        config.read(path_to_properties)
 
         formatter = logging.Formatter(
             '%(asctime)s - [%(module)s:%(lineno)d]- %(levelname)s - %(message)s')
