@@ -5,30 +5,10 @@ from collections import defaultdict
 import pandas as pd
 import lightrdf
 from lightrdf.python_module.parse import literal, iri
-from tqdm import tqdm
-
-from CoreNanopub.utils import _extractGCSID
 
 CEONTO = "<http://gda.dei.unipd.it/cecore/ontology/"
 SIO = "<http://semanticscience.org/resource/SIO_"
 RDF = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-
-SENTENCE_QUERY = "PREFIX ceonto: <http://gda.dei.unipd.it/cecore/ontology/> " \
-                 "PREFIX SIO: <http://semanticscience.org/resource/SIO_> " \
-                 "SELECT ?sentence_id ?CCSLabel ?CELabel ?CGELabel ?PTLabel" \
-                 " WHERE {" \
-                 "?sentence_id a SIO:000113;" \
-                 "ceonto:CCSLabel ?CCSLabel;" \
-                 "ceonto:CELabel ?CELabel;" \
-                 "ceonto:CGELabel ?CGELabel;" \
-                 "ceonto:PTLabel ?PTLabel. }"
-
-GCS_SENTENCE_QUERY = "PREFIX ceonto: <http://gda.dei.unipd.it/cecore/ontology/> " \
-                     "SELECT ?gcs ?sentence" \
-                     " WHERE {" \
-                     "?gcs a ceonto:GCS;" \
-                     "ceonto:supportedBy ?sentence." \
-
 
 
 def extract_facts(dump, logger):
