@@ -86,7 +86,7 @@ def extract_gene_class(dump, sentence_uri):
 def extract_gcs_sentence(dump, logger, gcs_uri):
     logger.info(f".....Extracting related sentences")
     # convert query output to DataFrame
-    gcs_sentence_dict = defaultdict(list)
+    tmp_dict = defaultdict(list)
     triples = list(dump.search_triples(gcs_uri, CEONTO + 'supportedBy>', None))
     num_triples = len(triples)
     logger.info(f"Found {num_triples} related sentences")
@@ -95,11 +95,11 @@ def extract_gcs_sentence(dump, logger, gcs_uri):
         logger.info(f"Considering sentence # {count} of {num_triples}")
         count += 1
         # store gcs URI
-        gcs_sentence_dict['gcs'].append(iri(gcs_uri))
+        tmp_dict['gcs'].append(iri(gcs_uri))
         # store sentence associated w/ GCS
-        gcs_sentence_dict['sentence'].append(iri(triple[2]))
+        tmp_dict['sentence'].append(iri(triple[2]))
         logger.info(f"Extracting gene class for sentence {triple[2]}...")
-        gcs_sentence_dict['sentenceClass'].append(extract_gene_class(dump, triple[2]))
+        tmp_dict['sentenceClass'].append(extract_gene_class(dump, triple[2]))
 
-    return gcs_sentence_dict
+    return tmp_dict
 
