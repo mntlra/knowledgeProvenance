@@ -52,8 +52,6 @@ def extract_facts(dump, logger):
         # Extract related sentences
         extract_gcs_sentence(dump, gcs_sentence_dict, logger, str(triple[0]))
         logger.info(f"+++ GCS {gcs_id} COMPLETED +++")
-        if count == 10:
-            break
     gcs = pd.DataFrame(gcs_dict)
     gcs_sentence = pd.DataFrame(gcs_sentence_dict)
     return gcs, gcs_sentence
