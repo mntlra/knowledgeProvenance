@@ -25,8 +25,8 @@ class CoreNanopub(CommonNanopub):
         for ser_format in self.serialization_formats:
             self.serialization_path[ser_format] = self.datadir + self.config[serialization_prop][ser_format]
         if sample:
-            self.gcs_path = self.config["PATHS.DATASET.SAMPLE"]["gcs"]
-            self.gcs_sentence_path = self.config["PATHS.DATASET.SAMPLE"]["gcs_sentence"]
+            self.gcs_path = self.config["PATHS.DATASET"]["gcs_sample"]
+            self.gcs_sentence_path = self.config["PATHS.DATASET"]["gcs_sentence_sample"]
         else:
             self.gcs_path = self.config["PATHS.DATASET"]["gcs"]
             self.gcs_sentence_path = self.config["PATHS.DATASET"]["gcs_sentence"]
