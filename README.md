@@ -4,6 +4,23 @@
 
 This repository contains the source code for creating nanopublications with Knowledge Provenance information and the code for serializing nanopublications representing CORE-KB's GCS facts. 
 
+## Cite this work
+To cite this work, use the following BibTeX entry:
+
+```bibtex
+@inproceedings{giachelle_etal-2025,
+	author = {Giachelle, Fabio and Marchesin, Stefano and Menotti, Laura and Silvello, Gianmaria},
+	booktitle = {Proc. of the 21st conference on Information and Research science Connecting to Digital and Library science (IRCDL 2025)},
+	publisher = {CEUR-WS.org},
+  address = {Aachen, Germany},
+	series = {CEUR-WS Proceedings},
+	title = {{Extending Nanopublications with Knowledge Provenance for Multi-Source Scientific Assertions}},
+	url = {https://ceur-ws.org/Vol-3937/paper10.pdf},
+	volume = {3937},
+	year = {2025}
+}
+```
+
 ## Repository Structure
 The repository is organized as follows.
 - `data/` contains useful resources to create the nanopublications and all the results produced by the code: the program's log files and the serialized nanopublications. 
