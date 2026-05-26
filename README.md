@@ -5,7 +5,22 @@
 This repository contains the source code for creating nanopublications with Knowledge Provenance information and the code for serializing nanopublications representing CORE-KB's GCS facts. 
 
 ## Cite this work
-To cite this work, use the following BibTeX entry:
+To cite this work, use the following BibTeX entries:
+
+```bibtex
+
+@article{menotti_etal-2025,
+	author = {Menotti, Laura and Marchesin, Stefano and Giachelle, Fabio and Silvello, Gianmaria},
+	isbn = {1432-1300},
+	journal = {International Journal on Digital Libraries},
+	number = {4},
+	pages = {24},
+	title = {Provenance-driven nanopublications: representing source lineage and trust networks for multi-source assertions},
+	url = {https://doi.org/10.1007/s00799-025-00431-x},
+	volume = {26},
+	year = {2025}
+}
+```
 
 ```bibtex
 @inproceedings{giachelle_etal-2025,
