@@ -4,6 +4,8 @@
 
 This repository contains the source code for creating nanopublications with Knowledge Provenance information and the code for serializing nanopublications representing CORE-KB's GCS facts. 
 
+**Contact for misuse or vulnerability reports.** Laura Menotti, laura.menotti@unipd.it
+
 ## Cite this work
 To cite this work, use the following BibTeX entries:
 
