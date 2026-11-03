@@ -80,7 +80,7 @@ def _populatePubInfoGraph(self, gcs_row):
     self.pubinfo_graph.add((self.nanopub_graph.identifier, self.namespaces["pav"]["authoredBy"],
                             URIRef(self.namespaces["orcid"]["0000-0001-5015-5498"])))
     self.pubinfo_graph.add((self.nanopub_graph.identifier, self.namespaces["pav"]["authoredBy"],
-                            URIRef(self.namespaces["orcid"]["00009-0009-2515-4771"])))
+                            URIRef(self.namespaces["orcid"]["0009-0009-2515-4771"])))
     # Add license
     self.pubinfo_graph.add((self.nanopub_graph.identifier, DCTERMS.rights,
                             URIRef("http://opendatacommons.org/licenses/odbl/1.0/")))
